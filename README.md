@@ -183,7 +183,11 @@ app.
 This repository was created by [Team Epoch V](https://teamepoch.ai/team#v), based in
 the [Dream Hall](https://www.tudelft.nl/ddream) of the [Delft University of Technology](https://www.tudelft.nl/).
 
+
+
 Read more about this competition [here](https://teamepoch.ai/competitions).
+
+Marcin Jarosz,&nbsp;&nbsp; Madhav Venkatesh,&nbsp;&nbsp; Felipe Bononi Bello,&nbsp;&nbsp; Kenzo Heijman.
 
 [![Github Badge](https://img.shields.io/badge/-MarJarAI-24292e?style=flat&logo=Github)](https://github.com/MarJarAI)
 [![Github Badge](https://img.shields.io/badge/-madhavv197-24292e?style=flat&logo=Github)](https://github.com/madhavv197)
