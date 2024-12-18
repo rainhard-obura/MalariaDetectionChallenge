@@ -1,0 +1,82 @@
+parameters:
+  input_DATA_DIR: "data/img"
+  input_NEG_CSV: "data/csv_files/NEG_OR_NOT.csv"
+  input_SPLIT_CSV: "data/csv_files/split_assignment.csv"
+  input_TEST_CSV: "data/csv_files/Test.csv"
+  input_TRAIN_CSV: "data/csv_files/Train.csv"
+  input_detr_csv_dir: "csv_cv/detr_911"
+  input_yolo11_csv_dir: "csv_cv/worthy_sweep_3"
+
+  postprocessing_ensemble_all_Trophozoite_edge_distance_threshold: 0.02313242949778324
+  postprocessing_ensemble_all_Trophozoite_form: "wbf"
+  postprocessing_ensemble_all_Trophozoite_nms_iou_threshold: 0.5643916036510921
+  postprocessing_ensemble_all_Trophozoite_remove_edge_boxes: false
+  postprocessing_ensemble_all_Trophozoite_soft_nms_iou_threshold: 0.5410952267776714
+  postprocessing_ensemble_all_Trophozoite_use_spatial_density: false
+  postprocessing_ensemble_all_Trophozoite_voting_iou_threshold: 0.599028054114486
+  postprocessing_ensemble_all_Trophozoite_wbf_conf_threshold: 0.1540932250862952
+  postprocessing_ensemble_all_Trophozoite_wbf_iou_threshold: 0.6025652815877509
+  postprocessing_ensemble_all_Trophozoite_wbf_reduction: "mean"
+
+  postprocessing_ensemble_all_WBC_edge_distance_threshold: 0.005938233337280974
+  postprocessing_ensemble_all_WBC_form: "nms"
+  postprocessing_ensemble_all_WBC_nms_iou_threshold: 0.7078220048783357
+  postprocessing_ensemble_all_WBC_remove_edge_boxes: true
+  postprocessing_ensemble_all_WBC_soft_nms_iou_threshold: 0.6319355678942427
+  postprocessing_ensemble_all_WBC_use_spatial_density: false
+  postprocessing_ensemble_all_WBC_voting_iou_threshold: 0.7011683500841916
+  postprocessing_ensemble_all_WBC_wbf_conf_threshold: 0.2672746132344919
+  postprocessing_ensemble_all_WBC_wbf_iou_threshold: 0.6389982340501983
+  postprocessing_ensemble_all_WBC_wbf_reduction: "max"
+
+  postprocessing_ensemble_ttadetr_Trophozoite_form: "wbf"
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_conf_threshold: 0.10709599717995057
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_iou_threshold: 0.5345292581485973
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_reduction: "max"
+
+  postprocessing_ensemble_ttadetr_WBC_form: "wbf"
+  postprocessing_ensemble_ttadetr_WBC_wbf_conf_threshold: 0.1583561763942409
+  postprocessing_ensemble_ttadetr_WBC_wbf_iou_threshold: 0.6054489421903865
+  postprocessing_ensemble_ttadetr_WBC_wbf_reduction: "mean"
+
+  postprocessing_ensemble_ttayolo_Trophozoite_form: "wbf"
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_conf_threshold: 0.1594185673181875
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_iou_threshold: 0.6289350941984123
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_reduction: "max"
+
+  postprocessing_ensemble_ttayolo_WBC_form: "wbf"
+  postprocessing_ensemble_ttayolo_WBC_wbf_conf_threshold: 0.27245798052818915
+  postprocessing_ensemble_ttayolo_WBC_wbf_iou_threshold: 0.6982991950621151
+  postprocessing_ensemble_ttayolo_WBC_wbf_reduction: "mean"
+
+  postprocessing_individual_detr_Trophozoite_border_threshold: 0.05
+  postprocessing_individual_detr_Trophozoite_edge_threshold: 0.04415076990544039
+  postprocessing_individual_detr_Trophozoite_lower_aspect_ratio_threshold: 0.2
+  postprocessing_individual_detr_Trophozoite_size_factor: 0.946674634282576
+  postprocessing_individual_detr_Trophozoite_upper_aspect_ratio_threshold: 5
+  postprocessing_individual_detr_Trophozoite_use_remove_edges: true
+  postprocessing_individual_detr_Trophozoite_use_size_adjustment: true
+
+  postprocessing_individual_detr_WBC_border_threshold: 0.05
+  postprocessing_individual_detr_WBC_edge_threshold: 0.027106537312726317
+  postprocessing_individual_detr_WBC_lower_aspect_ratio_threshold: 0.2
+  postprocessing_individual_detr_WBC_size_factor: 0.9613289144146868
+  postprocessing_individual_detr_WBC_upper_aspect_ratio_threshold: 5
+  postprocessing_individual_detr_WBC_use_aspect_ratio_filter: true
+  postprocessing_individual_detr_WBC_use_remove_edges: true
+  postprocessing_individual_detr_WBC_use_size_adjustment: true
+
+  postprocessing_individual_detr_allclass_nms_iou_threshold: 0.7169386551797948
+  postprocessing_individual_detr_allclass_use_class_independent_nms: false
+
+  postprocessing_individual_yolo11_Trophozoite_border_threshold: 0.05
+  postprocessing_individual_yolo11_Trophozoite_edge_threshold: 0.018455405874471177
+  postprocessing_individual_yolo11_Trophozoite_size_factor: 0.8503408357335509
+  postprocessing_individual_yolo11_Trophozoite_use_remove_edges: true
+  postprocessing_individual_yolo11_Trophozoite_use_size_adjustment: true
+
+  postprocessing_individual_yolo11_WBC_border_threshold: 0.05
+  postprocessing_individual_yolo11_WBC_edge_threshold: 0.027805444046135525
+  postprocessing_individual_yolo11_WBC_size_factor: 0.9397719003904088
+  postprocessing_individual_yolo11_WBC_use_remove_edges: true
+  postprocessing_individual_yolo11_WBC_use_size_adjustment: true

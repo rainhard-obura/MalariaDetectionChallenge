@@ -1,0 +1,625 @@
+# Program and Method Configuration
+program: cv_sweep/sweep_postprocess.py
+method: bayes
+
+# Metric Configuration
+metric:
+  name: mAP          # Metric for evaluation
+  goal: maximize     # Goal is to maximize the metric
+
+parameters:
+
+  # ============================
+  # Class-Specific Ensemble Weights
+  # ============================
+
+  # DETR weights for Trophozoite and WBC
+  detr_weight_Trophozoite:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  detr_weight_WBC:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  # YOLO weights for Trophozoite and WBC
+  yolo_weight_Trophozoite:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  yolo_weight_WBC:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  # # YOLO9 weights for Trophozoite and WBC
+  # yolo9_weight_Trophozoite:
+  #   distribution: uniform
+  #   min: 0.0
+  #   max: 0.5
+
+  # yolo9_weight_WBC:
+  #   distribution: uniform
+  #   min: 0.0
+  #   max: 0.5
+
+  # # YOLO11 weights for Trophozoite and WBC
+  # yolo11_weight_Trophozoite:
+  #   distribution: uniform
+  #   min: 0.9
+  #   max: 1.0
+
+  # yolo11_weight_WBC:
+  #   distribution: uniform
+  #   min: 0.9
+  #   max: 1.0
+
+  # ============================
+  # Input Configurations (Fixed Values)
+  # ============================
+  input_yolo_models_path:
+    value: "parameters/yolo_config_files/*.yaml"
+
+  input_detr_csv_path:
+    value: "submissions/interim/detr.csv"
+
+  input_yolo_csv_paths:
+    value:
+      - "submissions/interim/predictions_9s_neg_preds_WBCremoved.csv"
+
+  input_TRAIN_CSV:
+    value: "data/csv_files/Train.csv"
+
+  input_NEG_CSV:
+    value: "data/csv_files/NEG_OR_NOT.csv"
+
+  input_TEST_CSV:
+    value: "data/csv_files/Test.csv"
+
+  input_SPLIT_CSV:
+    value: "data/csv_files/split_assignment.csv"
+
+  input_DATA_DIR:
+    value: "data/img"
+
+  input_detr_csv_dir:
+    value: "csv_cv/detr_911"
+
+  input_yolo11_csv_dir:
+    value: "csv_cv/worthy_sweep_3"
+
+  input_yolo9_csv_dir:
+    value: "csv_cv/yolo9_preds"
+
+  output_path:
+    value: "submissions/ensemble_results.csv"
+
+
+
+  #  ============================
+  # Ensemble YOLO tta Parameters - Trophozoite
+  # ============================
+  postprocessing_ensemble_ttayolo_Trophozoite_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_ttayolo_Trophozoite_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttayolo_Trophozoite_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.4
+
+  # ============================
+  # Ensemble YOLO tta Parameters - WBC
+  # ============================
+  postprocessing_ensemble_ttayolo_WBC_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_ttayolo_WBC_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_ttayolo_WBC_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttayolo_WBC_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttayolo_WBC_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.3
+
+
+
+
+
+
+  #  ============================
+  # Ensemble DETR tta Parameters - Trophozoite
+  # ============================
+  postprocessing_ensemble_ttadetr_Trophozoite_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_ttadetr_Trophozoite_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttadetr_Trophozoite_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.4
+
+  # ============================
+  # Ensemble DETR tta Parameters - WBC
+  # ============================
+  postprocessing_ensemble_ttadetr_WBC_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_ttadetr_WBC_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_ttadetr_WBC_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttadetr_WBC_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_ttadetr_WBC_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.3
+
+
+  # ============================
+  # DETR Processing Parameters - Trophozoite
+  # ============================
+  postprocessing_individual_detr_Trophozoite_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_detr_Trophozoite_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_detr_WBC_use_aspect_ratio_filter:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_detr_Trophozoite_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.1
+
+  postprocessing_individual_detr_Trophozoite_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_detr_Trophozoite_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  postprocessing_individual_detr_Trophozoite_upper_aspect_ratio_threshold:
+    distribution: uniform
+    min: 2.0
+    max: 2.5
+  postprocessing_individual_detr_Trophozoite_lower_aspect_ratio_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.6
+
+
+
+
+  # ============================
+  # DETR Processing Parameters - WBC
+  # ============================
+  postprocessing_individual_detr_WBC_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_detr_WBC_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+  
+  postprocessing_individual_detr_WBC_use_aspect_ratio_filter:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_detr_WBC_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.1
+
+  postprocessing_individual_detr_WBC_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_detr_WBC_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  postprocessing_individual_detr_WBC_upper_aspect_ratio_threshold:
+    distribution: uniform
+    min: 2.0
+    max: 2.5
+  postprocessing_individual_detr_WBC_lower_aspect_ratio_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.6
+
+
+
+
+
+  # ============================
+  # YOLO 11 Processing Parameters - Trophozoite
+  # ============================
+  postprocessing_individual_yolo11_Trophozoite_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo11_Trophozoite_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo11_Trophozoite_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.05
+
+  postprocessing_individual_yolo11_Trophozoite_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_yolo11_Trophozoite_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  # ============================
+  # YOLO 11 Processing Parameters - WBC
+  # ============================
+  postprocessing_individual_yolo11_WBC_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo11_WBC_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo11_WBC_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.05
+
+  postprocessing_individual_yolo11_WBC_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_yolo11_WBC_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  # ============================
+  # YOLO 9 Processing Parameters - Trophozoite
+  # ============================
+  postprocessing_individual_yolo9_Trophozoite_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo9_Trophozoite_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo9_Trophozoite_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.05
+
+  postprocessing_individual_yolo9_Trophozoite_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_yolo9_Trophozoite_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  # ============================
+  # YOLO 9 Processing Parameters - WBC
+  # ============================
+  postprocessing_individual_yolo9_WBC_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo9_WBC_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo9_WBC_size_factor:
+    distribution: uniform
+    min: 0.85
+    max: 1.05
+
+  postprocessing_individual_yolo9_WBC_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_individual_yolo9_WBC_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  # ============================
+  # Ensemble YOLO Parameters - Trophozoite
+  # ============================
+  postprocessing_ensemble_yolo_Trophozoite_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_yolo_Trophozoite_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_yolo_Trophozoite_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_yolo_Trophozoite_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_yolo_Trophozoite_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.4
+
+  # ============================
+  # Ensemble YOLO Parameters - WBC
+  # ============================
+  postprocessing_ensemble_yolo_WBC_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_yolo_WBC_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_yolo_WBC_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_yolo_WBC_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+
+  postprocessing_ensemble_yolo_WBC_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.3
+
+  # ============================
+  # Final Ensemble Parameters - Trophozoite
+  # ============================
+  postprocessing_ensemble_all_Trophozoite_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_all_Trophozoite_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_all_Trophozoite_nms_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+
+  postprocessing_ensemble_all_Trophozoite_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+
+  postprocessing_ensemble_all_Trophozoite_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.3
+
+  postprocessing_ensemble_all_Trophozoite_use_size_filtering:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_Trophozoite_min_size_ratio:
+    distribution: uniform
+    min: 0.5
+    max: 1.0
+
+  postprocessing_ensemble_all_Trophozoite_max_size_ratio:
+    distribution: uniform
+    min: 1.0
+    max: 2.0
+
+  postprocessing_ensemble_all_Trophozoite_remove_edge_boxes:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_Trophozoite_edge_distance_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_ensemble_all_Trophozoite_use_spatial_density:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_Trophozoite_option:
+    distribution: categorical
+    values: [ 0, 1, 2, 3, 4 ]
+
+  postprocessing_ensemble_all_Trophozoite_base_adjustment:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  postprocessing_ensemble_all_Trophozoite_density_multiplier:
+    distribution: uniform
+    min: 0.1
+    max: 0.2
+
+  postprocessing_ensemble_all_Trophozoite_percentile_low:
+    distribution: uniform
+    min: 10
+    max: 40
+
+  postprocessing_ensemble_all_Trophozoite_percentile_high:
+    distribution: uniform
+    min: 60
+    max: 90
+
+  postprocessing_ensemble_all_Trophozoite_low_density_adjustment:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  postprocessing_ensemble_all_Trophozoite_high_density_adjustment:
+    distribution: uniform
+    min: 1.0
+    max: 1.1
+
+  # ============================
+  # Final Ensemble Parameters - WBC
+  # ============================
+  postprocessing_ensemble_all_WBC_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_all_WBC_wbf_reduction:
+    distribution: categorical
+    values: [ "mean", "median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_all_WBC_nms_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+
+  postprocessing_ensemble_all_WBC_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+
+  postprocessing_ensemble_all_WBC_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.01
+    max: 0.3
+
+  postprocessing_ensemble_all_WBC_use_size_filtering:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_WBC_min_size_ratio:
+    distribution: uniform
+    min: 0.5
+    max: 1.0
+
+  postprocessing_ensemble_all_WBC_max_size_ratio:
+    distribution: uniform
+    min: 1.0
+    max: 2.0
+
+  postprocessing_ensemble_all_WBC_remove_edge_boxes:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_WBC_edge_distance_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+
+  postprocessing_ensemble_all_WBC_use_spatial_density:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_ensemble_all_WBC_option:
+    distribution: categorical
+    values: [ 0, 1, 2, 3, 4 ]
+
+  postprocessing_ensemble_all_WBC_base_adjustment:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  postprocessing_ensemble_all_WBC_density_multiplier:
+    distribution: uniform
+    min: 0.1
+    max: 0.2
+
+  postprocessing_ensemble_all_WBC_percentile_low:
+    distribution: uniform
+    min: 10
+    max: 40
+
+  postprocessing_ensemble_all_WBC_percentile_high:
+    distribution: uniform
+    min: 60
+    max: 90
+
+  postprocessing_ensemble_all_WBC_low_density_adjustment:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  postprocessing_ensemble_all_WBC_high_density_adjustment:
+    distribution: uniform
+    min: 1.0
+    max: 1.1

@@ -1,0 +1,19 @@
+# Base configuration for postprocessing pipeline
+
+# File paths
+INPUT_CSV: "submissions/best.csv"
+OUTPUT_CSV: "submissions/best_swept_cv_8678_pp.csv"
+
+# Data directories
+DATA_DIR: 'data/img'
+TEST_CSV: "data/csv_files/Test.csv"
+TRAIN_CSV: "data/csv_files/Train.csv"
+NEG_CSV: 'data/csv_files/NEG_OR_NOT.csv'
+
+# Default processing flags
+use_size_adjustment: false
+use_nms: false
+use_remove_edges: false
+use_spatial_density_troph: false
+use_spatial_density_wbc: false
+use_wbf: false

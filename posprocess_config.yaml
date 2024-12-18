@@ -1,0 +1,12 @@
+tta:
+  yolo: [ 'flip', 'rotate' ]
+  detr: [ 'flip', 'rotate' ]
+
+
+tta_box_ens:
+  yolo:
+    size_factor: 1.0
+    edge_removal: True
+
+
+tta_box_pp:

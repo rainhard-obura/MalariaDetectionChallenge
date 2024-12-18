@@ -1,0 +1,49 @@
+# Processing flags
+use_size_adjustment: true
+use_nms: true
+use_remove_edges: false
+use_spatial_density_troph: true
+use_spatial_density_wbc: true
+use_wbf: true
+
+# Size factors
+size_factor_troph: 0.9361857196459363
+size_factor_wbc: 0.9431281174768383
+
+# IOU thresholds
+iou_threshold_troph: 0.689944865076736
+iou_threshold_wbc: 0.6557034314070641
+
+# Edge and border parameters
+edge_threshold: 0.09996729584342132
+border_threshold: 1
+
+# Trophozoite spatial density parameters
+option_troph: 0
+base_adjustment_troph: 0.9122882717534601
+density_multiplier_troph: 0.13432622002995165
+percentile_low_troph: 32
+percentile_high_troph: 87
+low_density_adjustment_troph: 0.955391245389809
+high_density_adjustment_troph: 1.0349143302561614
+
+# WBC spatial density parameters
+option_wbc: 3
+base_adjustment_wbc: 0.9677078224500608
+density_multiplier_wbc: 0.05344229330563657
+percentile_low_wbc: 28
+percentile_high_wbc: 73
+low_density_adjustment_wbc: 0.9981058566511961
+high_density_adjustment_wbc: 1.0385727387576456
+
+# WBF parameters
+wbf_iou_threshold: 0.7349867625643904
+wbf_conf_threshold: 0.15916377607804047
+
+
+
+
+# {'use_size_adjustment': True, 'use_nms': True, 'use_remove_edges': False, 'use_spatial_density_troph': True, 'use_spatial_density_wbc': True, 'use_wbf': True, 
+# 'size_factor_troph': 0.9288640761234833, 'size_factor_wbc': 0.9748695481314286, 'iou_threshold_troph': 0.6369154971061173, 'iou_threshold_wbc': 0.5513346661123069, 'option_troph': 0, 'base_adjustment_troph': 0.9790617674271507, 
+# 'density_multiplier_troph': 0.1581068143528162, 'percentile_low_troph': 13, 'percentile_high_troph': 89, 'low_density_adjustment_troph': 0.9658917355505173, 'high_density_adjustment_troph': 1.0237590270436032, 'option_wbc': 3, 
+# 'base_adjustment_wbc': 0.9049844146949105, 'density_multiplier_wbc': 0.0861664083236558, 'percentile_low_wbc': 39, 'percentile_high_wbc': 86, 'low_density_adjustment_wbc': 0.9759383148130543, 'high_density_adjustment_wbc': 1.0336179341707254, 'wbf_iou_threshold': 0.7349867625643904, 'wbf_conf_threshold': 0.15916377607804047}

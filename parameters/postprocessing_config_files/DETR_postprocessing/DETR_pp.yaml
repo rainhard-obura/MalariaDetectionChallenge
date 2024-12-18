@@ -1,0 +1,39 @@
+# Processing flags
+use_size_adjustment: true
+use_nms: false
+use_remove_edges: false
+use_spatial_density_troph: true
+use_spatial_density_wbc: true
+use_wbf: false
+
+
+# Size factors
+size_factor_troph: 1.0291055785025363
+size_factor_wbc: 1.0161206137229095
+
+# IOU thresholds
+iou_threshold_troph: 0.689944865076736
+iou_threshold_wbc: 0.6557034314070641
+
+# Edge and border parameters
+edge_threshold: 0.09996729584342132
+border_threshold: 1
+
+# Trophozoite spatial density parameters
+option_troph: 0
+base_adjustment_troph: 0.9122882717534601
+density_multiplier_troph: 0.13432622002995165
+percentile_low_troph: 32
+percentile_high_troph: 87
+low_density_adjustment_troph: 0.955391245389809
+high_density_adjustment_troph: 1.0349143302561614
+
+# WBC spatial density parameters
+option_wbc: 3
+base_adjustment_wbc: 0.9677078224500608
+density_multiplier_wbc: 0.05344229330563657
+percentile_low_wbc: 28
+percentile_high_wbc: 73
+low_density_adjustment_wbc: 0.9981058566511961
+high_density_adjustment_wbc: 1.0385727387576456
+

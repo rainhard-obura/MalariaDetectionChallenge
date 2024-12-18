@@ -1,0 +1,114 @@
+device: "cuda:0"
+
+model:
+  name: "deta"
+  model_name: "theodullin/deta-resnet-50_finetuned_blood_cell_10epochs"
+  _name_or_path: "theodullin/deta-resnet-50_finetuned_blood_cell_10epochs"
+  activation_dropout: 0.27
+  activation_function: "relu"
+  assign_first_stage: false
+  attention_dropout: 0.1173775017744976
+  auxiliary_loss: true
+  backbone_config:
+    model_type: "resnet"
+    out_features: [ "stage2", "stage3", "stage4" ]
+    out_indices: [ 2, 3, 4 ]
+  bbox_cost: 4.997544849490023
+  bbox_loss_coefficient: 6.562316857573485
+  class_cost: 1.3544558661739805
+  d_model: 256
+  decoder_attention_heads: 8
+  decoder_ffn_dim: 2048
+  decoder_layerdrop: 0.0
+  decoder_layers: 6
+  decoder_n_points: 4
+  dice_loss_coefficient: 1
+  dropout: 0.13671849268201017
+  encoder_attention_heads: 8
+  encoder_ffn_dim: 2048
+  encoder_layerdrop: 0.0
+  encoder_layers: 6
+  encoder_n_points: 4
+  eos_coefficient: 0.10378087674123718
+  focal_alpha: 0.25
+  giou_cost: 2.3066757717517863
+  giou_loss_coefficient: 5.5704723033706625
+  init_std: 0.02
+  init_xavier_std: 1.0
+  is_encoder_decoder: true
+  mask_loss_coefficient: 1
+  max_position_embeddings: 2048
+  num_feature_levels: 5
+  position_embedding_type: "sine"
+  two_stage: true
+  two_stage_num_proposals: 250
+  with_box_refine: true
+
+processor:
+  model_name: "theodullin/deta-resnet-50_finetuned_blood_cell_10epochs"
+  do_normalize: true
+  do_pad: false
+  do_rescale: false
+  do_resize: false
+  image_mean: [ 0.485, 0.456, 0.406 ]
+  image_std: [ 0.229, 0.224, 0.225 ]
+  resample: 2
+  rescale_factor: 0.00392156862745098
+  width: 960
+  height: 540
+
+transforms:
+  train:
+    hflip_prob: 0.38
+    vflip_prob: 0.08572382253241186
+    rotate_prob: 0.46832917061244705
+    rotate_degrees: 157.22864303872728
+    blur_prob: 0.4421811549879675
+    blur_kernel_size: [ 9, 9 ]
+    blur_sigma: [ 0.5, 1.0 ]
+    brightness: 0.1285055168488631
+    contrast: 0.17789736974061487
+    saturation: 0.5
+    hue: 0.165
+    color_jitter_prob: 0.2557543961091192
+    gray_prob: 0.2509966921026859
+    crop_prob: 0.3109808557679582
+    crop_scale_min: 0.6117717419448095
+    crop_scale_max: 1.027306543318069
+    plasma_brightness_roughness: [ 0.5, 0.5 ]
+    plasma_brightness_prob: 0.17
+    posterize_bits: 7
+    posterize_prob: 0.1485244952469192
+    saturation_prob: 0.08706329514606918
+    solarize_threshold: 0.7635705903322715
+    solarize_addition: 0.08462489921053828
+    solarize_prob: 0.24
+    affine_degrees: [ -15, 15 ]
+    affine_translate: [ 0.1, 0.1 ]
+    affine_scale: [ 0.8, 1.2 ]
+    affine_shear: [ -5, 5 ]
+    affine_prob: 0.2992668778991876
+    hue_range: [ -0.5, 0.5 ]
+    hue_prob: 0.1928332011472766
+    sharpness: 0.27
+    sharpness_prob: 0.01
+  validation: { }
+
+testing:
+  test_batch_size: 4
+  save_images: false
+  num_images_to_save: 0
+  confidence_threshold: 0
+
+training:
+  train_batch_size: 4
+  n_accum: 1
+  num_epochs: 60 #TODO change
+  learning_rate: 0.00046921239480795255
+  warmup_steps: 400
+
+ema:
+  enabled: true
+  beta: 0.9999
+  update_after_step: 500
+  update_every: 1

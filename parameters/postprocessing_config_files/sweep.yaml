@@ -1,0 +1,241 @@
+program: postprocessing/sweep.py
+method: bayes
+metric:
+  name: mAP
+  goal: maximize
+
+parameters:
+  # Ensemble weights
+  detr_weight:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+  yolo_weight:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+  yolo9_weight:
+    distribution: uniform
+    min: 0.0
+    max: 0.5
+  yolo11_weight:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+
+
+
+  # Input configurations (fixed values)
+  input_yolo_models_path:
+    value: "parameters/yolo_config_files/*.yaml"
+  input_detr_csv_path:
+    value: "submissions/interim/detr.csv"
+  input_yolo_csv_paths:
+    value:
+      - "submissions/interim/predictions_9s_neg_preds_WBCremoved.csv"
+  input_TRAIN_CSV:
+    value: "data/csv_files/Train.csv"
+  input_NEG_CSV:
+    value: "data/csv_files/NEG_OR_NOT.csv"
+  input_TEST_CSV:
+    value: "data/csv_files/Test.csv"
+  input_SPLIT_CSV:
+    value: "data/csv_files/split_assignment.csv"
+  input_DATA_DIR:
+    value: "data/img"
+  input_detr_csv_dir:
+    value: "csv_cv/detr_911"
+  input_yolo11_csv_dir:
+    value: "csv_cv/worthy_sweep_3"
+  input_yolo9_csv_dir:
+    value: "csv_cv/yolo9_preds"
+  output_path:
+    value: "submissions/ensemble_results.csv"
+    # Postprocessing configurations for ensemble YOLO models
+
+    # YOLO 11 Processing Parameters
+  postprocessing_individual_yolo11_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_individual_yolo11_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo11_size_factor_troph:
+    distribution: uniform
+    min: 0.85
+    max: 1.0
+  postprocessing_individual_yolo11_size_factor_wbc:
+    distribution: uniform
+    min: 0.85
+    max: 1.0
+
+  postprocessing_individual_yolo11_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+  postprocessing_individual_yolo11_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+  # YOLO 9 Processing Parameters (same distributions as YOLO 11)
+  postprocessing_individual_yolo9_use_size_adjustment:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_individual_yolo9_use_remove_edges:
+    distribution: categorical
+    values: [ true, false ]
+
+  postprocessing_individual_yolo9_size_factor_troph:
+    distribution: uniform
+    min: 0.9
+    max: 1.1
+  postprocessing_individual_yolo9_size_factor_wbc:
+    distribution: uniform
+    min: 0.85
+    max: 1.0
+
+  postprocessing_individual_yolo9_edge_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+  postprocessing_individual_yolo9_border_threshold:
+    distribution: uniform
+    min: 0.8
+    max: 1.2
+
+
+  postprocessing_ensemble_yolo_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+
+  postprocessing_ensemble_yolo_wbf_reduction:
+    distribution: categorical
+    values: [ "mean","median", "max", "min", "mean_no_rescale", "random" ]
+
+  postprocessing_ensemble_yolo_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  postprocessing_ensemble_yolo_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  postprocessing_ensemble_yolo_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  
+  # Postprocessing configurations for ensemble of all models
+  postprocessing_ensemble_all_form:
+    distribution: categorical
+    values: [ "nms", "wbf", "soft_nms" ]
+  postprocessing_ensemble_all_wbf_reduction:
+    distribution: categorical
+    values: [ "mean","median", "max", "min", "mean_no_rescale", "random" ]
+  postprocessing_ensemble_all_nms_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  postprocessing_ensemble_all_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  postprocessing_ensemble_all_wbf_conf_threshold:
+    distribution: uniform
+    min: 0.5
+    max: 0.85
+  
+  postprocessing_ensemble_all_wbf_confidence_threshold:
+    distribution: uniform
+    min: 0.1
+    max: 0.5
+  postprocessing_ensemble_all_wbf_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+  postprocessing_ensemble_all_nms_iou_threshold:
+    distribution: uniform
+    min: 0.3
+    max: 0.85
+  
+  postprocessing_ensemble_all_use_size_filtering:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_ensemble_all_min_size_ratio:
+    distribution: uniform
+    min: 0.5
+    max: 1.0
+  postprocessing_ensemble_all_max_size_ratio:
+    distribution: uniform
+    min: 1.0
+    max: 2.0
+  postprocessing_ensemble_all_remove_edge_boxes:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_ensemble_all_edge_distance_threshold:
+    distribution: uniform
+    min: 0.05
+    max: 0.15
+  postprocessing_ensemble_all_use_spatial_density_troph:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_ensemble_all_option_troph:
+    distribution: categorical
+    values: [ 0, 1, 2, 3, 4 ]
+  postprocessing_ensemble_all_base_adjustment_troph:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+  postprocessing_ensemble_all_density_multiplier_troph:
+    distribution: uniform
+    min: 0.1
+    max: 0.2
+  postprocessing_ensemble_all_percentile_low_troph:
+    distribution: uniform
+    min: 10
+    max: 40
+  postprocessing_ensemble_all_percentile_high_troph:
+    distribution: uniform
+    min: 60
+    max: 90
+  postprocessing_ensemble_all_low_density_adjustment_troph:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+  postprocessing_ensemble_all_high_density_adjustment_troph:
+    distribution: uniform
+    min: 1.0
+    max: 1.1
+  postprocessing_ensemble_all_use_spatial_density_wbc:
+    distribution: categorical
+    values: [ true, false ]
+  postprocessing_ensemble_all_option_wbc:
+    distribution: categorical
+    values: [ 0, 1, 2, 3, 4 ]
+  postprocessing_ensemble_all_base_adjustment_wbc:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+  postprocessing_ensemble_all_density_multiplier_wbc:
+    distribution: uniform
+    min: 0.1
+    max: 0.2
+  postprocessing_ensemble_all_percentile_low_wbc:
+    distribution: uniform
+    min: 10
+    max: 40
+  postprocessing_ensemble_all_percentile_high_wbc:
+    distribution: uniform
+    min: 60
+    max: 90
+  postprocessing_ensemble_all_low_density_adjustment_wbc:
+    distribution: uniform
+    min: 0.9
+    max: 1.0
+  postprocessing_ensemble_all_high_density_adjustment_wbc:
+    distribution: uniform
+    min: 1.0
+    max: 1.1
