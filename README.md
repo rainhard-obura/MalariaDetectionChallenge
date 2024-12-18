@@ -9,7 +9,7 @@ This is Team Epoch's solution to
 the [Lacuna Malaria Detection Challenge](https://zindi.africa/competitions/lacuna-malaria-detection-challenge), hosted
 by Zindi.
 
-The Public score achieved was : 0.928012335, and Private score: 0.924725824.
+The Public score achieved was : 0.92801233, and Private score: 0.92472582.
 
 A technical report will be written and uploaded after the competition finale.
 
