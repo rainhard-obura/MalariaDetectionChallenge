@@ -1,9 +1,9 @@
-import pandas as pd
-import torch
-from PIL import Image
-from torch.utils.data import DataLoader, Dataset
-from torchvision.transforms import Resize, ToTensor
-from tqdm import tqdm
+import pandas as pd #type:ignore
+import torch #type:ignore
+from PIL import Image #type:ignore
+from torch.utils.data import DataLoader, Dataset #type:ignore
+from torchvision.transforms import Resize, ToTensor #type:ignore
+from tqdm import tqdm #type:ignore
 
 
 class NegativeDataset(Dataset):

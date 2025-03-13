@@ -1,8 +1,8 @@
 import logging
 
-import pandas as pd
-import torch
-from torchvision.ops import nms
+import pandas as pd #type: ignore
+import torch #type:ignore
+from torchvision.ops import nms #type:ignore
 
 from postprocessing.postprocess_functions import (
     postprocessing_pipeline,
