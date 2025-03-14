@@ -91,6 +91,7 @@ param_config = create_structured_config(config["parameters"])
 detr_tta_files = [f for f in tta_files if "det" in f]
 yolo_tta_files = [f for f in tta_files if "yol" in f]
 
+
 all_df = run_postprocessing(param_config, 1, yolo_tta_files, detr_tta_files)
 
 # Add NEG predictions to the final submission
